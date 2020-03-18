@@ -20,6 +20,14 @@ class Member extends Model
         'role' => Member::AUTHOR,
     ];
 
+    protected $fillable = [
+        'user_id',
+        'project_id',
+        'role',
+        'confirmed',
+        'confirmed_on'
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\User');

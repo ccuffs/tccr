@@ -19,7 +19,7 @@ class CreateMembersTable extends Migration
             $table->unsignedInteger('project_id');
             $table->integer('role');
             $table->boolean('confirmed')->default(false);
-            $table->timestamp('confirmed_on');
+            $table->timestamp('confirmed_on')->nullable();
             $table->timestamps();
 
             $table->unique(['user_id', 'project_id', 'role']);

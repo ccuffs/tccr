@@ -44,7 +44,16 @@
                         </a>
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="https://id.uffs.cc"><i class="icon ion-md-contact"></i>Meu perfil</a>
-                            <a class="nav-link" href="{{ route('logout') }}"><i class="icon ion-md-log-out"></i> Sair</a>
+                            <a class="nav-link" href="{{ route('logout') }}"                           
+                                onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                                <i class="icon ion-md-log-out"></i>
+                                Sair
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </div>
                     </div>
                 </div>

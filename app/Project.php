@@ -17,6 +17,11 @@ class Project extends Model
     const STATUS_FAILED                = 6;
     const STATUS_CANCELED              = 7;
 
+    protected $fillable = [
+        'type',
+        'status'
+    ];
+
     /**
      * Get the comments for the blog post.
      */

@@ -25,7 +25,8 @@ class HomeController extends Controller
     public function index()
     {
         return view('user.home', [
-            'user' => Auth::user()
+            'user' => Auth::user(),
+            'projects' => []
         ]);
     }
 }
