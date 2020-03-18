@@ -22,7 +22,7 @@ h2 i {
     margin-right: 0.5em;
 }
 
-div.row {
+div.row.section {
     margin-bottom: 1.5em;
 }
 
@@ -33,6 +33,11 @@ div.card-header a {
 
 .schedule-block {
     margin-bottom: 2em;
+}
+
+.img-author {
+    width: 4em;
+    height: auto;
 }
 
 .gridster ul {}
@@ -376,7 +381,7 @@ footer p {
 .timeline-list {}
 
 .timeline-item {
-    border-left: 5px solid #747474;
+    border-left: 5px solid #494949;
     position: relative;
     padding: 2rem 1.5rem .5rem 2.5rem;
     font-size: .9rem;
@@ -385,8 +390,7 @@ footer p {
 }
 
 .timeline-item:first-child {
-    margin-top: -1.5rem;
-    padding-top: 3rem;
+    padding-top: 4rem;
 }
 
 .timeline-item:last-child {
