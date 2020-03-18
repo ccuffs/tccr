@@ -25,7 +25,7 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-6">
                         <p class="text-muted">Título/tema</p>
                         <p class="">Uso de Realidade Aumentada para auxiliar o ensino de Geometria na disciplina de Computação Gráfica na UFFS</p>
                     </div>
@@ -36,6 +36,10 @@
                     <div class="col-2">
                         <p class="text-muted">Período</p>
                         <p class="">2019/2</p>
+                    </div>
+                    <div class="col-2">
+                        <p class="text-muted">Situação</p>
+                        <p class="">Em andamento</p>
                     </div>
                 </div>
 
