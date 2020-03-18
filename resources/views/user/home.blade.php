@@ -24,11 +24,23 @@
                 Informações
             </div>
             <div class="card-body">
-                <div class="row section">
-                    <div class="col-12">
+                <div class="row">
+                    <div class="col-8">
                         <p class="text-muted">Título/tema</p>
                         <p class="">Uso de Realidade Aumentada para auxiliar o ensino de Geometria na disciplina de Computação Gráfica na UFFS</p>
+                    </div>
+                    <div class="col-2">
+                        <p class="text-muted">Tipo</p>
+                        <p class="">Projeto (TCC I)</p>
+                    </div>
+                    <div class="col-2">
+                        <p class="text-muted">Período</p>
+                        <p class="">2019/2</p>
+                    </div>
+                </div>
 
+                <div class="row section">
+                    <div class="col-12">
                         <p class="text-muted">Resumo</p>
                         <p class="text-muted small text-justify">A associação dos conceitos matemáticos com a realidade é um desafio para a maioria dos
 
@@ -50,48 +62,63 @@ validação do protótipo desenvolvido.</p>
                 </div>
 
                 <div class="row">
+                    <div class="col-4">
+                        <p class="text-muted">Autoria</p>
+                    </div>
+                    <div class="col-4">
+                        <p class="text-muted">Orientação</p>
+                    </div>
+                    <div class="col-4">
+                        <p class="text-muted">Examinadores</p>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col-4 text-left">
                         <div class="container-fluid">
                             <div class="row align-items-center">
-                                <div class="col-12">
-                                    <p class="text-muted">Autor(a)</p>
+                                <div class="col-2">
+                                    <img class="user-avatar rounded-circle" src="https://colorlib.com/polygon/sufee/images/admin.jpg" alt="User Avatar">
                                 </div>
-                            </div>
-                        
-                            <div class="row align-items-center">
-                                <div class="col-4">
-                                    <img class="img-fluid rounded-circle" src="https://colorlib.com/polygon/sufee/images/admin.jpg" alt="User Avatar">
-                                </div>
-                                <div class="col-8" style="padding-left: 1.5em;">
+                                <div class="col-10">
                                     <p>Fernando Bevilacqua <br/><small class="text-muted">fernando.bevilacqua</small></p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-5 text-left">
-                        <div class="container-fluid">
-                            <div class="row align-items-center">
-                                <div class="col-12">
-                                    <p class="text-muted">Orientação</p>
-                                </div>
-                            </div>
-                        
+                    <div class="col-4 text-left">
+                        <div class="container-fluid">                        
                             <div class="row align-items-center">
                                 <div class="col-2">
                                     <img alt="image" class="user-avatar rounded-circle" src="https://colorlib.com/polygon/sufee/images/admin.jpg">
                                 </div>
                                 <div class="col-10">
-                                    <p>Fernando Bevilacqua <span class="badge badge-warning">Não confirmado</span><br/><small class="text-muted">fernando.bevilacqua</small></p>
+                                    <p>
+                                        Fernando Bevilacqua <br/>
+                                        <small class="text-muted">fernando.bevilacqua</small><br />
+                                        <span class="badge badge-danger">Não confirmado</span>
+                                    </p>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
 
-                    <div class="col-3 text-center">
-                        <p class="text-muted">Situação atual</p>
-                        <p class="badge badge-info">Em andamento</p>
+                    <div class="col-4 text-left">
+                        <div class="container-fluid">                        
+                            <div class="row align-items-center">
+                                <div class="col-2">
+                                    <img alt="image" class="user-avatar rounded-circle" src="https://colorlib.com/polygon/sufee/images/admin.jpg">
+                                </div>
+                                <div class="col-10">
+                                    <p>
+                                        Fernando Bevilacqua <br/>
+                                        <small class="text-muted">fernando.bevilacqua</small><br />
+                                        <span class="badge badge-danger">Não confirmado</span>
+                                    </p>
+                                </div>
+                            </div> 
+                        </div>
                     </div>
                 </div>
             </div>
