@@ -15,10 +15,13 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" media="screen">
-    <link rel="stylesheet" href="{{ asset('css/ionicons.min.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('js/3rdparty/jquery.dsmorse-gridster.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/gridster.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}" media="screen">
+
+    <!-- Priority scripts -->
+    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
 </head>
 
 <body>
@@ -94,7 +97,7 @@
         </div>
     </footer>
 
-    <script src="{{ asset('/js/3rdparty/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/3rdparty/jquery.min.js') }}"></script>
     <script src="{{ asset('js/3rdparty/jquery.dsmorse-gridster.with-extras.min.js') }}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ asset('js/3rdparty/bootstrap.bundle.min.js') }}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ asset('js/3rdparty/store.everything.min.js') }}" type="text/javascript" charset="utf-8"></script>
