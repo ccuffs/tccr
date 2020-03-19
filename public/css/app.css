@@ -316,6 +316,30 @@ footer p {
 }
 
 
+/* Form */
+
+.row input,
+.row textarea {
+    background: #3f3f3f;
+    border: 1px solid #27292E;
+    border-radius: 5px;
+    outline: none;
+    color: #f1f1f1;
+    margin-top: 0.2em;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+}
+
+.row input:focus,
+.row textarea:focus {
+    border: solid 1px rgb(255, 255, 255);
+    background: #3f3f3f;
+    color: #fff;
+}
+
+
 /*
   Timeline
   Source: https://bootsnipp.com/snippets/4Mzzm
