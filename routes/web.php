@@ -14,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Project
-Route::get('/project/start', 'ProjectController@start')->name('project-start');
-Route::get('/project/{project}', 'ProjectController@view')->name('project-view');
-Route::get('/project/{project}/edit', 'ProjectController@edit')->name('project-edit');
+Route::get('/project/create', 'ProjectController@create')->name('project.create');
+Route::post('/project', 'ProjectController@store')->name('project.store');
+Route::get('/project/{project}/edit', 'ProjectController@edit')->name('project.edit');
+Route::get('/project/{project}', 'ProjectController@show')->name('project.show');
+Route::patch('/project/{project}', 'ProjectController@update')->name('project.update');
+Route::delete('/project/{project}', 'ProjectController@remove')->name('project.remove');
 
 // Auth
 Route::get('/login', 'Auth\LoginController@index')->name('login');

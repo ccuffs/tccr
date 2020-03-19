@@ -17,6 +17,16 @@
 
 @section('content')
 
+@if(session()->get('success'))
+    <div class="row section">
+        <div class="col-12">
+            <div class="alert alert-success">
+                {{ session()->get('success') }}  
+            </div>
+        </div>
+    </div>
+@endif
+
 <div class="row section">
     <div class="col-lg-12">
         <div class="card text-white bg-dark border-secondary">
@@ -72,13 +82,23 @@
                 </thead>
                 <tbody>
                     @foreach ($projects as $project)
-                        <tr onclick="window.location = '{{ route('project-view', [$project]) }}'" style="cursor:pointer;">
+                        <tr onclick="window.location = '{{ route('project.show', [$project]) }}'" style="cursor:pointer;">
                             <td>{{ $project->id }}</td>
                             <td>Fernando Bevilacqua</td>
                             <td>Fernando Bevilacqua</td>
                             <td>{{ $project->type }}</td>
                             <td>20xx</td>
-                            <td>{{ $project->status }}</td>
+                            <td>
+                                {{ $project->status }}
+                                
+                                <a href="{{ route('project.edit', $project->id)}}" class="btn btn-primary">Edit</a>
+                                
+                                <form action="{{ route('project.remove', $project->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -9,107 +9,115 @@
                 Edição
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-6">
-                        <p class="text-muted">Título/tema</p>
-                        <p class="">Uso de Realidade Aumentada para auxiliar o ensino de Geometria na disciplina de Computação Gráfica na UFFS</p>
+                @if ($errors->any())
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-2">
-                        <p class="text-muted">Tipo</p>
-                        <p class="">Projeto (TCC I)</p>
+                @endif
+
+                <form method="post" action="{{ route('project.update', $project->id) }}">
+                    @method('PATCH') 
+                    @csrf
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">    
+                                <label for="type" class="text-muted">Título/tema</label>
+                                <input type="text" class="form-control" name="type" value={{ $project->type }} />
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <p class="text-muted">Tipo</p>
+                            <p class="">Projeto (TCC I)</p>
+                        </div>
+                        <div class="col-2">
+                            <p class="text-muted">Período</p>
+                            <p class="">2019/2</p>
+                        </div>
+                        <div class="col-2">
+                            <p class="text-muted">Situação</p>
+                            <p class="">Em andamento</p>
+                        </div>
                     </div>
-                    <div class="col-2">
-                        <p class="text-muted">Período</p>
-                        <p class="">2019/2</p>
+
+                    <div class="row section">
+                        <div class="col-12">
+                            <p class="text-muted">Resumo</p>
+                            <p class="text-muted small text-justify"></p>
+                        </div>
                     </div>
-                    <div class="col-2">
-                        <p class="text-muted">Situação</p>
-                        <p class="">Em andamento</p>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <p class="text-muted">Autoria</p>
+                        </div>
+                        <div class="col-4">
+                            <p class="text-muted">Orientação</p>
+                        </div>
+                        <div class="col-4">
+                            <p class="text-muted">Examinadores</p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row section">
-                    <div class="col-12">
-                        <p class="text-muted">Resumo</p>
-                        <p class="text-muted small text-justify">A associação dos conceitos matemáticos com a realidade é um desafio para a maioria dos
-
-estudantes. A tecnologia atual fornece ferramentas para criar opções que aproximam essa per-
-cepção. À vista disso, essa pesquisa mostra o potencial que a Realidade Aumentada tem quando
-
-associada a Teoria da Carga Cognitiva e a Visualização, na elaboração de uma ferramenta que
-auxilie os estudantes na concepção e aprendizado de conceitos matemáticos que são utilizados
-
-na disciplina de Computação Gráfica na UFFS. São apresentados os referenciais teóricos em-
-pregados nessa pesquisa, bem como o processo de criação do protótipo de uma aplicação de
-
-Realidade Aumentada contendo demonstrações sobre vetores em uma aula de Computação Grá-
-fica. A pesquisa demonstra a importância da Realidade Aumentada como auxílio nos processos
-
-práticos pedagógicos, através da avaliação das respostas e opiniões coletadas na fase de testes e
-validação do protótipo desenvolvido.</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-4">
-                        <p class="text-muted">Autoria</p>
-                    </div>
-                    <div class="col-4">
-                        <p class="text-muted">Orientação</p>
-                    </div>
-                    <div class="col-4">
-                        <p class="text-muted">Examinadores</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-4 text-left">
-                        <div class="container-fluid">
-                            <div class="row align-items-center">
-                                <div class="col-2">
-                                    <img class="user-avatar rounded-circle" src="https://colorlib.com/polygon/sufee/images/admin.jpg" alt="User Avatar">
+                    <div class="row">
+                        <div class="col-4 text-left">
+                            <div class="container-fluid">
+                                <div class="row align-items-center">
+                                    <div class="col-2">
+                                        <img class="user-avatar rounded-circle" src="https://colorlib.com/polygon/sufee/images/admin.jpg" alt="User Avatar">
+                                    </div>
+                                    <div class="col-10">
+                                        <p>Fernando Bevilacqua <br/><small class="text-muted">fernando.bevilacqua</small></p>
+                                    </div>
                                 </div>
-                                <div class="col-10">
-                                    <p>Fernando Bevilacqua <br/><small class="text-muted">fernando.bevilacqua</small></p>
+                            </div>
+                        </div>
+
+                        <div class="col-4 text-left">
+                            <div class="container-fluid">                        
+                                <div class="row align-items-center">
+                                    <div class="col-2">
+                                        <img alt="image" class="user-avatar rounded-circle" src="https://colorlib.com/polygon/sufee/images/admin.jpg">
+                                    </div>
+                                    <div class="col-10">
+                                        <p>
+                                            Fernando Bevilacqua <br/>
+                                            <small class="text-muted">fernando.bevilacqua</small><br />
+                                            <span class="badge badge-danger">Não confirmado</span>
+                                        </p>
+                                    </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="col-4 text-left">
+                            <div class="container-fluid">                        
+                                <div class="row align-items-center">
+                                    <div class="col-2">
+                                        <img alt="image" class="user-avatar rounded-circle" src="https://colorlib.com/polygon/sufee/images/admin.jpg">
+                                    </div>
+                                    <div class="col-10">
+                                        <p>
+                                            Fernando Bevilacqua <br/>
+                                            <small class="text-muted">fernando.bevilacqua</small><br />
+                                            <span class="badge badge-danger">Não confirmado</span>
+                                        </p>
+                                    </div>
+                                </div> 
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-4 text-left">
-                        <div class="container-fluid">                        
-                            <div class="row align-items-center">
-                                <div class="col-2">
-                                    <img alt="image" class="user-avatar rounded-circle" src="https://colorlib.com/polygon/sufee/images/admin.jpg">
-                                </div>
-                                <div class="col-10">
-                                    <p>
-                                        Fernando Bevilacqua <br/>
-                                        <small class="text-muted">fernando.bevilacqua</small><br />
-                                        <span class="badge badge-danger">Não confirmado</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-4 text-left">
-                        <div class="container-fluid">                        
-                            <div class="row align-items-center">
-                                <div class="col-2">
-                                    <img alt="image" class="user-avatar rounded-circle" src="https://colorlib.com/polygon/sufee/images/admin.jpg">
-                                </div>
-                                <div class="col-10">
-                                    <p>
-                                        Fernando Bevilacqua <br/>
-                                        <small class="text-muted">fernando.bevilacqua</small><br />
-                                        <span class="badge badge-danger">Não confirmado</span>
-                                    </p>
-                                </div>
-                            </div> 
-                        </div>
-                    </div>
-                </div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
             </div>
         </div>
     </div>
