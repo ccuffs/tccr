@@ -18,6 +18,9 @@ class Project extends Model
     const STATUS_CANCELED              = 7;
 
     protected $fillable = [
+        'title',
+        'abstract',
+        'period',
         'type',
         'status'
     ];

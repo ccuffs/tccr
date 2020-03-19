@@ -30,28 +30,36 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">    
-                                <label for="type" class="text-muted">Título/tema</label>
-                                <input type="text" class="form-control" name="type" value={{ $project->type }} />
+                                <label for="title" class="text-muted">Título/tema</label>
+                                <input type="text" class="form-control" name="title" value="{{ $project->title }}" />
                             </div>
                         </div>
                         <div class="col-2">
-                            <p class="text-muted">Tipo</p>
-                            <p class="">Projeto (TCC I)</p>
+                            <div class="form-group">    
+                                <label for="type" class="text-muted">Tipo</label>
+                                <input type="text" class="form-control" name="type" value="{{ $project->type }}" />
+                            </div>
                         </div>
                         <div class="col-2">
-                            <p class="text-muted">Período</p>
-                            <p class="">2019/2</p>
+                            <div class="form-group">    
+                                <label for="period" class="text-muted">Período</label>
+                                <input type="text" class="form-control" name="period" value="{{ $project->period }}" />
+                            </div>
                         </div>
                         <div class="col-2">
-                            <p class="text-muted">Situação</p>
-                            <p class="">Em andamento</p>
+                            <div class="form-group">    
+                                <label for="status" class="text-muted">Situação</label>
+                                <input type="text" class="form-control" name="status" value="{{ $project->status }}" />
+                            </div>
                         </div>
                     </div>
 
                     <div class="row section">
                         <div class="col-12">
-                            <p class="text-muted">Resumo</p>
-                            <p class="text-muted small text-justify"></p>
+                            <div class="form-group">    
+                                <label for="abstract" class="text-muted">Resumo</label>
+                                <textarea class="form-control" id="abstract" name="abstract" rows="3">{{ $project->abstract }}</textarea>
+                            </div>
                         </div>
                     </div>
 

@@ -57,7 +57,7 @@
                         <p class="text-muted">Você ainda não iniciou o acompanhamento do seu TCC. Clique no botão ao lado para iniciar o processo. Você não precisa ter um orientador ou um tema agora, isso pode ser definido depois. Se você já tem essas informações, pode informá-las a seguir.</p>
                     </div>
                     <div class="col-3 text-center">
-                        <a href="{{ route('project-start') }}"><button type="button" class="btn btn-outline-success btn-lg" href="google.com">Iniciar um TCC</button></a>
+                        <a href="{{ route('project.create') }}"><button type="button" class="btn btn-outline-success btn-lg" href="google.com">Iniciar um TCC</button></a>
                     </div>
                 </div>
             </div>

@@ -30,12 +30,16 @@ class ProjectController extends Controller
         $existingMember = Member::where('user_id', Auth::user()->id)->first();
 
         if($existingMember) {
+            // TODO: improve this
             dd($existingMember);
         }
 
         $project = Project::create([
+            'title' => '',
+            'abstract' => '',
+            'period' => 0,
             'type' => Project::TYPE_PLAN,
-            'status' => Project::STATUS_WAITING_SUPERVISION
+            'status' => Project::STATUS_WAITING_SUPERVISION,
         ]);
 
         $member = Member::create([
@@ -82,11 +86,18 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'type'=>'required'
+            'title' => 'required',
+            'period' => 'required',
+            'type' => 'required',
+            'status' => 'required'
         ]);
 
         $project = new Project([
-            'type' => $request->get('first_name'),
+            'title' => $request->get('title'),
+            'abstract' => $request->get('abstract', ''),
+            'period' => $request->get('period'),
+            'type' => $request->get('type'),
+            'status' => $request->get('status')
         ]);
 
         $project->save();
@@ -103,11 +114,19 @@ class ProjectController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'type' => 'required'
+            'title' => 'required',
+            'period' => 'required',
+            'type' => 'required',
+            'status' => 'required'
         ]);
 
         $project = Project::find($id);
+        $project->title =  $request->get('title');
+        $project->abstract =  $request->get('abstract', '');
+        $project->period =  $request->get('period');
         $project->type =  $request->get('type');
+        $project->status =  $request->get('status');
+
         $project->save();
 
         return redirect('/home')->with('success', 'Project updated!');
