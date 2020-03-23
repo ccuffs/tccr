@@ -15,8 +15,6 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" media="screen">
-    <link rel="stylesheet" href="{{ asset('js/3rdparty/jquery.dsmorse-gridster.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('css/gridster.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}" media="screen">
 
     <!-- Priority scripts -->
@@ -98,7 +96,6 @@
     </footer>
 
     <script src="{{ asset('js/3rdparty/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/3rdparty/jquery.dsmorse-gridster.with-extras.min.js') }}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ asset('js/3rdparty/bootstrap.bundle.min.js') }}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ asset('js/3rdparty/store.everything.min.js') }}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ asset('js/app.js') }}" type="text/javascript" charset="utf-8"></script>
