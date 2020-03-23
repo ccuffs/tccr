@@ -1,108 +1,54 @@
 var TCCR = {};
 
 TCCR.App = function() {
+    var self = this;
+
     this.API_ENDPOINT = '/tccr/public/';
 
     this.index = null;
+    this.autocomplete = null;
+    this.data = null;
 
     this.apiURL = function(url) {
         return this.API_ENDPOINT + url;
     };
 
-    this.init = function() {
-        this.initIndex();
-    };
-
     this.initIndex = function(data) {
         this.index = new FlexSearch({
-            encode: "advanced",
-            tokenize: "reverse",
+            encode: 'advanced',
+            tokenize: 'reverse',
             suggest: true,
             cache: true
         });
 
         if (!data) {
+            console.warn('Index is empty.');
             return;
         }
 
         for (var i = 0; i < data.length; i++) {
-            index.add(i, data[i]);
+            console.log(i, data[i]);
+            this.index.add(i, data[i].name);
         }
+
+        this.data = data;
     };
 
-    this.initUI = function() {
-        var suggestions = document.getElementById("suggestions");
-        var autocomplete = document.getElementById("autocomplete");
-        var userinput = document.getElementById("userinput");
-
-        userinput.addEventListener("input", show_results, true);
-        userinput.addEventListener("keyup", accept_autocomplete, true);
-        suggestions.addEventListener("click", accept_suggestion, true);
+    this.indexSearch = function(term) {
+        return self.index.search(term, 25);
     };
 
-    this.show_results = function() {
-
-        var value = this.value;
-        var results = index.search(value, 25);
-        var entry, childs = suggestions.childNodes;
-        var i = 0,
-            len = results.length;
-
-        for (; i < len; i++) {
-
-            entry = childs[i];
-
-            if (!entry) {
-
-                entry = document.createElement("div");
-                suggestions.appendChild(entry);
-            }
-
-            entry.textContent = data[results[i]];
-        }
-
-        while (childs.length > len) {
-
-            suggestions.removeChild(childs[i])
-        }
-
-        var first_result = data[results[0]];
-        var match = first_result && first_result.toLowerCase().indexOf(value.toLowerCase());
-
-        if (first_result && (match !== -1)) {
-
-            autocomplete.value = value + first_result.substring(match + value.length);
-            autocomplete.current = first_result;
-        } else {
-
-            autocomplete.value = autocomplete.current = value;
-        }
-    }
-
-    this.accept_autocomplete = function(event) {
-        if ((event || window.event).keyCode === 13) {
-
-            this.value = autocomplete.value = autocomplete.current;
-        }
-    }
-
-    this.accept_suggestion = function(event) {
-
-        var target = (event || window.event).target;
-
-        userinput.value = autocomplete.value = target.textContent;
-
-        while (suggestions.lastChild) {
-
-            suggestions.removeChild(suggestions.lastChild);
-        }
-
-        return false;
+    this.indexInfo = function(key) {
+        return self.data[key] ? self.data[key].name : null;
     }
 
     this.boot = function() {
+        var self = this;
+
         axios.get(this.apiURL('/info/users')).then(function(response) {
-            console.log(response.data);
+            self.initIndex(response.data);
+            self.autocomplete = new IDUFFS.AutoComplete();
+            self.autocomplete.init(self.indexSearch, self.indexInfo, 'userinput', 'suggestions', 'autocomplete');
         });
     };
 };

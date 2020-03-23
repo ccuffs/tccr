@@ -100,6 +100,7 @@
     <script src="{{ asset('js/3rdparty/store.everything.min.js') }}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ asset('js/3rdparty/flexsearch.compact.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/app.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ asset('js/iduffs.autocomplete.js') }}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ asset('js/tccr.js') }}" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
