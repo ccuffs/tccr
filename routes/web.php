@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\App;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +28,14 @@ Route::post('/login', 'Auth\LoginController@auth');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 // Misc
+Route::get('/info/users', 'InfoController@users')->name('info.users');
 Route::get('/home', 'HomeController@index')->name('home');
 
+if (App::environment('local')) {
+    Route::get('/test', 'TestController@index');
+}
+
+// TODO: remove this cloujure
 Route::get('/', function () {
     return view('welcome');
 });
