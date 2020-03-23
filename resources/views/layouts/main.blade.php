@@ -15,7 +15,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" media="screen">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ asset('css/tccr.css') }}" media="screen">
 
     <!-- Priority scripts -->
     <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
@@ -98,6 +98,8 @@
     <script src="{{ asset('js/3rdparty/jquery.min.js') }}"></script>
     <script src="{{ asset('js/3rdparty/bootstrap.bundle.min.js') }}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ asset('js/3rdparty/store.everything.min.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ asset('js/3rdparty/flexsearch.compact.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/app.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ asset('js/tccr.js') }}" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
