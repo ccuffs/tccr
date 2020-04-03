@@ -6,6 +6,8 @@ TCCR.Edit = function() {
         var entry = document.getElementById(entryId);
         entry.remove();
         // TODO: check if valid, notify endpoints
+
+        axios.delete(this.main.api('participation/1'));
     };
 
     this.onAutoCompleteClicked = function(containerId, user, el) {

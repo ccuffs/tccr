@@ -22,6 +22,11 @@ Route::get('/project/{project}', 'ProjectController@show')->name('project.show')
 Route::patch('/project/{project}', 'ProjectController@update')->name('project.update');
 Route::delete('/project/{project}', 'ProjectController@remove')->name('project.remove');
 
+// Participation
+Route::post('/participation', 'ParticipationController@store')->name('participation.store');
+Route::patch('/participation/{participation}', 'ParticipationController@update')->name('participation.update');
+Route::delete('/participation/{participation}', 'ParticipationController@remove')->name('participation.remove');
+
 // Auth
 Route::get('/login', 'Auth\LoginController@index')->name('login');
 Route::post('/login', 'Auth\LoginController@auth');

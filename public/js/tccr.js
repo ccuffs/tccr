@@ -7,7 +7,7 @@ TCCR.Main = function() {
 
     this.modules = {};
 
-    this.apiURL = function(url) {
+    this.api = function(url) {
         return this.API_ENDPOINT + url;
     };
 
@@ -16,16 +16,11 @@ TCCR.Main = function() {
             throw Error('Invalid module name: ' + prop);
         }
 
+        module.main = this;
         this.modules[prop] = module;
     };
 
-    this.api = function(endpoint, callback) {
-        axios.get(this.apiURL('/info/users')).then(function(response) {
-            callback(response);
-        });
-    };
-
-    this.boot = function() {
+    this.loadModules = function() {
         var id;
         var module;
 
@@ -38,6 +33,16 @@ TCCR.Main = function() {
 
             module.init();
         }
+    };
+
+    this.boot = function() {
+        this.loadModules();
+
+        // Integrate Laravel's CSRF token into all axios calls.
+        window.axios.defaults.headers.common = {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        };
     };
 };
 
