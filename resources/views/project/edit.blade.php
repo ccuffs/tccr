@@ -86,9 +86,19 @@
                                         <p>Fernando Bevilacqua <br/><small class="text-muted">fernando.bevilacqua</small></p>
                                     </div>
                                 </div>
+
+                                <div class="row align-items-center">
+                                    <div class="col-12">
+                                        <div class="form-group">    
+                                            <label for="author" class="text-muted"></label>
+                                            <input type="text" class="form-control" name="author[]" value="{{ $project->status }}" />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
+                        <!-- Advisors -->
                         <div class="col-4 text-left">
                             <div class="container-fluid">                        
                                 <div class="row align-items-center">
@@ -106,9 +116,10 @@
                             </div>
                         </div>
 
+                        <!-- Examiners -->
                         <div class="col-4 text-left">
-                            <div class="container-fluid">                        
-                                <div class="row align-items-center">
+                            <div class="container-fluid" id="examiners">                        
+                                <div class="row align-items-center examiner-entry">
                                     <div class="col-2">
                                         <img alt="image" class="user-avatar rounded-circle" src="https://colorlib.com/polygon/sufee/images/admin.jpg">
                                     </div>
@@ -118,6 +129,16 @@
                                             <small class="text-muted">fernando.bevilacqua</small><br />
                                             <span class="badge badge-danger">Não confirmado</span>
                                         </p>
+                                    </div>
+                                </div> 
+
+                                <div class="row align-items-center">
+                                    <div class="col-12">
+                                        <div class="form-group">    
+                                            <label for="period" class="text-muted">Adicionar</label>
+                                            <input type="text" class="form-control" id="examiner" name="examiner[]" value="" />
+                                        </div>
+                                        <div id="examiner-suggestions"></div>
                                     </div>
                                 </div> 
                             </div>
@@ -162,4 +183,8 @@
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/tccr.edit.js') }}" type="text/javascript" charset="utf-8"></script>
 @endsection

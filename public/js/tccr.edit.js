@@ -11,14 +11,14 @@ TCCR.Edit = function() {
         return this.API_ENDPOINT + url;
     };
 
-    this.enhancePage = function() {
+    this.createUserSelection = function(containerId, inputId, suggestionsContainerId) {
         var ac = new IDUFFS.AutoComplete();
         
         ac.init({
             group: 'computacao.ch',
             maxSuggestions: 30,
-            suggestionsContainerId: 'suggestions',
-            inputId: 'userinput',
+            suggestionsContainerId: suggestionsContainerId,
+            inputId: inputId,
 
         }).done(function(data) {
             console.log('Autocomplete está pronto. Elementos no indice: ' + data.length);
@@ -27,16 +27,31 @@ TCCR.Edit = function() {
             console.log('Falha ao inicializar autocomplete: ', error);
         });
 
-        ac.signals.clicked.add(function(entry, el) { console.log('clicked: ', entry, el); });
-        ac.signals.hovered.add(function(entry, el) { console.log('hovered: ', entry, el); });
-        ac.signals.added.add(function(entry, el) { console.log('added: ', entry, el); });
-        ac.signals.removed.add(function(entry, el) { console.log('removed: ', entry, el); });
-        ac.signals.fetched.add(function(keys) { console.log('fetched: ', keys); });
-        ac.signals.hinted.add(function(value, entry) { console.log('hinted: ', value, entry); });
+        ac.signals.clicked.add(function(user, el) {
+            var container = document.getElementById(containerId);
+            var entry = document.createElement('div');
+
+            entry.innerHTML = 
+                '<div class="row align-items-center ' + inputId +'-entry">' + 
+                    '<div class="col-2">' + 
+                        '<img alt="image" class="user-avatar rounded-circle" src="https://colorlib.com/polygon/sufee/images/admin.jpg">' + 
+                    '</div>' + 
+                    '<div class="col-10">' + 
+                        '<p>' + 
+                            user.name + ' <br/>' + 
+                            '<small class="text-muted">' + user.username + '</small><br />' + 
+                            '<span class="badge badge-danger">Não confirmado</span>' + 
+                        '</p>' + 
+                    '</div>' + 
+                '</div>';
+
+            container.prepend(entry);
+        });
     };
 
     this.init = function() {
         console.debug('TCC.Edit.init');
+        this.createUserSelection('examiners', 'examiner', 'examiner-suggestions');
     };
 };
 
