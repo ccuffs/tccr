@@ -1,59 +1,48 @@
 var TCCR = {};
 
-TCCR.App = function() {
+TCCR.Main = function() {
     var self = this;
 
     this.API_ENDPOINT = '/tccr/public/';
 
-    this.index = null;
-    this.autocomplete = null;
-    this.data = null;
+    this.modules = {};
 
     this.apiURL = function(url) {
         return this.API_ENDPOINT + url;
     };
 
-    this.initIndex = function(data) {
-        this.index = new FlexSearch({
-            encode: 'advanced',
-            tokenize: 'reverse',
-            suggest: true,
-            cache: true
+    this.load = function(module, prop) {
+        if(!prop) {
+            throw Error('Invalid module name: ' + prop);
+        }
+
+        this.modules[prop] = module;
+    };
+
+    this.api = function(endpoint, callback) {
+        axios.get(this.apiURL('/info/users')).then(function(response) {
+            callback(response);
         });
-
-        if (!data) {
-            console.warn('Index is empty.');
-            return;
-        }
-
-        for (var i = 0; i < data.length; i++) {
-            console.log(i, data[i]);
-            this.index.add(i, data[i].name);
-        }
-
-        this.data = data;
     };
-
-    this.indexSearch = function(term) {
-        return self.index.search(term, 25);
-    };
-
-    this.indexInfo = function(key) {
-        return self.data[key] ? self.data[key].name : null;
-    }
 
     this.boot = function() {
-        var self = this;
+        var id;
+        var module;
 
-        axios.get(this.apiURL('/info/users')).then(function(response) {
-            self.initIndex(response.data);
-            self.autocomplete = new IDUFFS.AutoComplete();
-            self.autocomplete.init(self.indexSearch, self.indexInfo, 'userinput', 'suggestions', 'autocomplete');
-        });
+        for(id in this.modules) {
+            module = this.modules[id];
+
+            if(!module.init) {
+                continue;
+            }
+
+            module.init();
+        }
     };
 };
 
+TCCR.app = new TCCR.Main();
+
 $(function() {
-    var app = new TCCR.App();
-    app.boot();
+    TCCR.app.boot();
 });
