@@ -119,7 +119,7 @@
                         <!-- Examiners -->
                         <div class="col-4 text-left">
                             <div class="container-fluid" id="examiners">                        
-                                <div class="row align-items-center examiner-entry">
+                                <div class="row align-items-center" style="display:none;">
                                     <div class="col-2">
                                         <img alt="image" class="user-avatar rounded-circle" src="https://colorlib.com/polygon/sufee/images/admin.jpg">
                                     </div>
@@ -135,8 +135,7 @@
                                 <div class="row align-items-center">
                                     <div class="col-12">
                                         <div class="form-group">    
-                                            <label for="period" class="text-muted">Adicionar</label>
-                                            <input type="text" class="form-control" id="examiner" name="examiner[]" value="" />
+                                            <input type="text" class="form-control" id="examiner" name="examiner" value="" />
                                         </div>
                                         <div id="examiner-suggestions"></div>
                                     </div>
