@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Project;
-use App\Member;
+use App\Participation;
 use Carbon\Carbon;
 
 class ProjectController extends Controller
@@ -27,11 +27,11 @@ class ProjectController extends Controller
     public function create()
     {
         // TODO: check if user already has a project
-        $existingMember = Member::where('user_id', Auth::user()->id)->first();
+        $existingParticipation = Participation::where('user_id', Auth::user()->id)->first();
 
-        if($existingMember) {
+        if($existingParticipation) {
             // TODO: improve this
-            dd($existingMember);
+            dd($existingParticipation);
         }
 
         $project = Project::create([
@@ -42,10 +42,10 @@ class ProjectController extends Controller
             'status' => Project::STATUS_WAITING_SUPERVISION,
         ]);
 
-        $member = Member::create([
+        $participation = Participation::create([
             'user_id' => Auth::user()->id,
             'project_id' => $project->id,
-            'role' => Member::AUTHOR,
+            'role' => Participation::AUTHOR,
             'confirmed' => true,
             'confirmed_on' => Carbon::now()
         ]);

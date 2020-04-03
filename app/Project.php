@@ -25,19 +25,13 @@ class Project extends Model
         'status'
     ];
 
-    /**
-     * Get the comments for the blog post.
-     */
     public function logs()
     {
         return $this->hasMany('App\Log');
     }
 
-    /**
-     * Get the comments for the blog post.
-     */
-    public function members()
+    public function particpations()
     {
-        return $this->hasMany('App\Member');
+        return $this->hasMany('App\Participation');
     }
 }

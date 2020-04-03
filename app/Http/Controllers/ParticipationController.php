@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Project;
-use App\Member;
+use App\Participation;
 use Carbon\Carbon;
 
 class ParticipationController extends Controller
@@ -27,7 +27,7 @@ class ParticipationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Member $participation)
+    public function update(Request $request, Participation $participation)
     {
         $request->validate([
             'title' => 'required',
@@ -78,7 +78,7 @@ class ParticipationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function remove(Member $participation)
+    public function remove(Participation $participation)
     {
         $participation->delete();
 

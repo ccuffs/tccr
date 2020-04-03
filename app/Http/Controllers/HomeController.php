@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Member;
+use App\Participation;
 use App\Project;
 
 class HomeController extends Controller
@@ -44,14 +44,14 @@ class HomeController extends Controller
 
     private function findProjects()
     {
-        $members = Member::where('user_id', Auth::user()->id)
+        $participations = Participation::where('user_id', Auth::user()->id)
                     ->orderBy('created_at', 'desc')
                     ->get();
 
         $project_ids = [];
 
-        foreach($members as $member) {
-            $project_ids[] = $member->project_id;
+        foreach($participations as $participation) {
+            $project_ids[] = $participation->project_id;
         }
 
         $projects = Project::whereIn('id', $project_ids)->get();

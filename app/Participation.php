@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Member extends Model
+class Participation extends Model
 {
     const AUTHOR     = 1; 
     const ADVISOR    = 2; 
@@ -17,7 +17,7 @@ class Member extends Model
      * @var array
      */
     protected $attributes = [
-        'role' => Member::AUTHOR,
+        'role' => Participation::AUTHOR,
     ];
 
     protected $fillable = [
