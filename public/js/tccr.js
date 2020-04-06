@@ -6,6 +6,7 @@ TCCR.Main = function() {
     this.API_ENDPOINT = '/tccr/public/';
 
     this.modules = {};
+    this.data = {}; // read by all modules
 
     this.api = function(url) {
         return this.API_ENDPOINT + url;

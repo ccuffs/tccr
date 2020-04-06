@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Project;
 use App\Participation;
+use App\User;
 use Carbon\Carbon;
 
 class ParticipationController extends Controller
@@ -45,30 +46,40 @@ class ParticipationController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function add(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'period' => 'required',
-            'type' => 'required',
-            'status' => 'required'
+            'user_id' => 'required',
+            'project_id' => 'required',
+            'role' => 'required'
         ]);
 
-        $project = new Project([
-            'title' => $request->get('title'),
-            'abstract' => $request->get('abstract', ''),
-            'period' => $request->get('period'),
-            'type' => $request->get('type'),
-            'status' => $request->get('status')
+        $user_id = $request->get('project_id');
+        $project_id = $request->get('project_id');
+        
+        // TODO: check project permissions
+        // TODO: check roles are valid
+        $user = User::where('id', $user_id)->first();
+        $project = Project::where('id', $project_id)->first();
+        $role = $request->get('role');
+        $confirmed = false;
+
+        $participation = new Participation([
+            'user_id' => $user->id,
+            'project_id' => $project->id,
+            'role' => $role,
+            'confirmed' => $confirmed,
+            'confirmed_on' => Carbon::now()
         ]);
+
+        $participation->save();
 
         return [
-            'success' => true
+            'participation' => $participation
         ];
     }
 

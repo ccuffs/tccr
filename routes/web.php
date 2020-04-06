@@ -23,7 +23,7 @@ Route::patch('/project/{project}', 'ProjectController@update')->name('project.up
 Route::delete('/project/{project}', 'ProjectController@remove')->name('project.remove');
 
 // Participation
-Route::post('/participation', 'ParticipationController@store')->name('participation.store');
+Route::post('/participation/add', 'ParticipationController@add')->name('participation.add');
 Route::patch('/participation/{participation}', 'ParticipationController@update')->name('participation.update');
 Route::delete('/participation/{participation}', 'ParticipationController@remove')->name('participation.remove');
 
