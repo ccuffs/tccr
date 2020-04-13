@@ -83,7 +83,7 @@ class ProjectController extends Controller
         return view('project.edit', [
             'user' => Auth::user(),
             'project' => $project,
-            'examiners' => $this->findParticitionsByRole($project, Participation::EXAMINER)
+            'examining' => $this->findParticitionsByRole($project, Participation::EXAMINER)
         ]);
     }
 
