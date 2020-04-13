@@ -12,9 +12,9 @@ TCCR.Edit = function() {
 
     this.onAutoCompleteClicked = function(containerId, user, el) {
         var pageData = this.main.data.edit;
-        
+  
         var data = {
-            user_id: pageData.user.id,
+            username: user.username,
             project_id: pageData.project.id,
             role: 4
         };

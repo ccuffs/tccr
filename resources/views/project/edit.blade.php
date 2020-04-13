@@ -112,19 +112,21 @@
 
                     <!-- Examiners -->
                     <div class="col-4 text-left">
-                        <div class="container-fluid" id="examiners">                        
-                            <div class="row align-items-center" style="display:none;">
-                                <div class="col-2">
-                                    <img alt="image" class="user-avatar rounded-circle" src="https://colorlib.com/polygon/sufee/images/admin.jpg">
-                                </div>
-                                <div class="col-10">
-                                    <p>
-                                        Fernando Bevilacqua <br/>
-                                        <small class="text-muted">fernando.bevilacqua</small><br />
-                                        <span class="badge badge-danger">Não confirmado</span>
-                                    </p>
-                                </div>
-                            </div> 
+                        <div class="container-fluid" id="examiners"> 
+                            @foreach ($examiners as $examiner)
+                                <div class="row align-items-center">
+                                    <div class="col-2">
+                                        <img alt="image" class="user-avatar rounded-circle" src="https://colorlib.com/polygon/sufee/images/admin.jpg">
+                                    </div>
+                                    <div class="col-10">
+                                        <p>
+                                            {{ $examiner->name }} <br/>
+                                            <small class="text-muted">{{ $examiner->username }}</small><br />
+                                            <span class="badge badge-danger">Não confirmado</span>
+                                        </p>
+                                    </div>
+                                </div> 
+                            @endforeach
 
                             <div class="row align-items-center">
                                 <div class="col-12">

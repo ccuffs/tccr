@@ -53,17 +53,17 @@ class ParticipationController extends Controller
     public function add(Request $request)
     {
         $request->validate([
-            'user_id' => 'required',
+            'username' => 'required',
             'project_id' => 'required',
             'role' => 'required'
         ]);
 
-        $user_id = $request->get('project_id');
+        $username = $request->get('username');
         $project_id = $request->get('project_id');
         
         // TODO: check project permissions
         // TODO: check roles are valid
-        $user = User::where('id', $user_id)->first();
+        $user = User::where('username', $username)->first();
         $project = Project::where('id', $project_id)->first();
         $role = $request->get('role');
         $confirmed = false;

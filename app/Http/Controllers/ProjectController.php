@@ -20,6 +20,18 @@ class ProjectController extends Controller
         $this->middleware('auth');
     }
 
+    private function findParticipantsByRole(Project $project, $role)
+    {
+        $participations = $project->particpations->reject(function ($participation) use ($role) {
+            return $participation->role === $role;
+        });
+        $users = $participations->map(function ($participation, $key) {
+            return $participation->user;
+        });
+        
+        return $users;
+    }
+
     /**
      *
      * @return \Illuminate\Contracts\Support\Renderable
@@ -65,7 +77,7 @@ class ProjectController extends Controller
         ]);
     }
 
-        /**
+    /**
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -73,7 +85,8 @@ class ProjectController extends Controller
     {
         return view('project.edit', [
             'user' => Auth::user(),
-            'project' => $project
+            'project' => $project,
+            'examiners' => $this->findParticipantsByRole($project, Participation::EXAMINER)
         ]);
     }
 
