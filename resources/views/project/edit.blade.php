@@ -113,17 +113,20 @@
                     <!-- Examiners -->
                     <div class="col-4 text-left">
                         <div class="container-fluid" id="examiners"> 
-                            @foreach ($examiners as $examiner)
+                            @foreach ($examiners as $participation)
                                 <div class="row align-items-center">
                                     <div class="col-2">
                                         <img alt="image" class="user-avatar rounded-circle" src="https://colorlib.com/polygon/sufee/images/admin.jpg">
                                     </div>
-                                    <div class="col-10">
+                                    <div class="col-9">
                                         <p>
-                                            {{ $examiner->name }} <br/>
-                                            <small class="text-muted">{{ $examiner->username }}</small><br />
+                                            {{ $participation->user->name }} <br/>
+                                            <small class="text-muted">{{ $participation->user->username }}</small><br />
                                             <span class="badge badge-danger">Não confirmado</span>
                                         </p>
+                                    </div>
+                                    <div class="col-1">
+                                        <a href="javascript:void(0);" onclick="TCCR.app.modules.edit.removeParticipation(this)" data-participation-id="{{ $participation->id }}">R</a>
                                     </div>
                                 </div> 
                             @endforeach

@@ -1,13 +1,13 @@
 TCCR.Edit = function() {
     this.autocompletes = {};
 
-    this.removeUser = function(el) {
-        var entryId = el.dataset.entryId;
-        var entry = document.getElementById(entryId);
-        entry.remove();
+    this.removeParticipation = function(el) {
+        var participationId = el.dataset.participationId | 0;
+        
+        // TODO: remove participation from DOM
         // TODO: check if valid, notify endpoints
 
-        axios.delete(this.main.api('participation/1'));
+        axios.delete(this.main.api('participation/' + participationId));
     };
 
     this.onAutoCompleteClicked = function(containerId, user, el) {
@@ -39,7 +39,7 @@ TCCR.Edit = function() {
                             '</p>' + 
                         '</div>' + 
                         '<div class="col-1">' + 
-                            '<a href="javascript:void(0);" onclick="TCCR.app.modules.edit.removeUser(this)" data-entry-id="' + id + '">R</a>' + 
+                            '<a href="javascript:void(0);" onclick="TCCR.app.modules.edit.removeParticipation(this)" data-participation-id="' + id + '">R</a>' + 
                         '</div>' + 
                     '</div>';
 
