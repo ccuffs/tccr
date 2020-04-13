@@ -1,71 +1,58 @@
+/**
+ * 
+ */
 TCCR.Edit = function() {
     this.autocompletes = {};
 
-    this.removeParticipation = function(el) {
-        var participationId = el.dataset.participationId | 0;
-        
-        // TODO: remove participation from DOM
-        // TODO: check if valid, notify endpoints
-
-        axios.delete(this.main.api('participation/' + participationId));
+    this.getUserParticipationHtml = function(endpoint, id, user) {
+        return '' +
+            '<div class="row align-items-center" id="' + endpoint + id + '">' + 
+                '<div class="col-2">' + 
+                    '<img alt="image" class="user-avatar rounded-circle" src="https://colorlib.com/polygon/sufee/images/admin.jpg">' + 
+                '</div>' + 
+                '<div class="col-9">' + 
+                    '<p>' + 
+                        user.name + ' <br/>' + 
+                        '<small class="text-muted">' + user.username + '</small><br />' + 
+                        '<span class="badge badge-danger">Não confirmado</span>' + 
+                    '</p>' + 
+                '</div>' + 
+                '<div class="col-1">' + 
+                    '<a href="javascript:void(0);" data-onclick="delete:participation:' + id + '">R</a>' + 
+                '</div>' + 
+            '</div>';
     };
 
     this.onAutoCompleteClicked = function(containerId, user, el) {
+        var self = this;
         var pageData = this.main.data.edit;
   
         var data = {
             username: user.username,
             project_id: pageData.project.id,
-            role: 4
+            role: 4 // TODO: get this from main.data.edit
         };
 
-        // TODO: needless to say this requires a major re-factoring =*
-        axios.post(this.main.api('participation/add'), data, {headers: {'Accept': 'application/json'}})
-            .then(function(response) {
-                var container = document.getElementById(containerId);
-                var entry = document.createElement('div');
-                var id = containerId + user.username;
+        // TODO: add loading indication
 
-                entry.innerHTML = 
-                    '<div class="row align-items-center" id="' + id + '">' + 
-                        '<div class="col-2">' + 
-                            '<img alt="image" class="user-avatar rounded-circle" src="https://colorlib.com/polygon/sufee/images/admin.jpg">' + 
-                        '</div>' + 
-                        '<div class="col-9">' + 
-                            '<p>' + 
-                                user.name + ' <br/>' + 
-                                '<small class="text-muted">' + user.username + '</small><br />' + 
-                                '<span class="badge badge-danger">Não confirmado</span>' + 
-                            '</p>' + 
-                        '</div>' + 
-                        '<div class="col-1">' + 
-                            '<a href="javascript:void(0);" onclick="TCCR.app.modules.edit.removeParticipation(this)" data-participation-id="' + id + '">R</a>' + 
-                        '</div>' + 
-                    '</div>';
+        axios.post(this.main.api('participation/add'), data, {
+            headers: {'Accept': 'application/json'}
+        })
+        .then(function(response) {
+            console.debug(response);
+            
+            if(response.status != 200) {
+                // TODO: show an alert?
+                return;
+            }
+            
+            var entry = document.createElement('div');
+            entry.innerHTML = self.getUserParticipationHtml('participation', response.data.participation.id, user);
 
-                container.prepend(entry);
-                console.log(response);
-            })
-            .catch(function(error) {
-                // Handle error (https://stackoverflow.com/a/55079885/29827)
-                if (error.response) {
-                    // The request was made and the server responded with a status code
-                    // that falls out of the range of 2xx
-                    console.log(error.response.data.message);
-                    console.log(error.response.data.errors);
-                    // console.log(error.response.status);
-                    // console.log(error.response.headers);
-                } else if (error.request) {
-                    // The request was made but no response was received
-                    // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-                    // http.ClientRequest in node.js
-                    console.log(error.request);
-                } else {
-                    // Something happened in setting up the request that triggered an Error
-                    console.log('Error', error.message);
-                }
-                console.log(error.config);
-            });
+            document.getElementById(containerId).prepend(entry);
+            self.main.hidrate();
+        })
+        .catch(this.main.onEndpointError);
     };
     
     this.getOrCreateAutoComplete = function(containerId, inputId, suggestionsContainerId) {
